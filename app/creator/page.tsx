@@ -7,6 +7,7 @@ export default function CreatorPage() {
 
   const [prompt, setPrompt] = useState("");
   const [strategy, setStrategy] = useState("");
+  const [published, setPublished] = useState(false);
 
 
 
@@ -15,8 +16,8 @@ export default function CreatorPage() {
     if (!prompt) return;
 
 
-    setStrategy(`
-Strategy Name:
+    setStrategy(
+`Strategy Name:
 BTC AI Trend Hunter
 
 
@@ -53,9 +54,41 @@ Medium
 
 Backtest Status:
 
-Simulation Ready
+Simulation Ready`
+    );
 
-    `);
+
+    setPublished(false);
+
+  }
+
+
+
+  function publishStrategy() {
+
+    const newStrategy = {
+
+      name: "BTC AI Trend Hunter",
+
+      creator: "Community User",
+
+      returnRate: "+25%",
+
+      risk: "Medium",
+
+      description:
+      "AI generated crypto trading strategy.",
+
+    };
+
+
+    localStorage.setItem(
+      "atlas_strategy",
+      JSON.stringify(newStrategy)
+    );
+
+
+    setPublished(true);
 
   }
 
@@ -80,33 +113,28 @@ Simulation Ready
 
 
 
-        <div className="mt-10">
+        <textarea
 
+          value={prompt}
 
-          <textarea
+          onChange={(e)=>setPrompt(e.target.value)}
 
-            value={prompt}
+          placeholder="Example: Create a BTC strategy for bull markets with medium risk..."
 
-            onChange={(e)=>setPrompt(e.target.value)}
+          className="
+          mt-10
+          w-full
+          h-40
+          rounded-xl
+          bg-zinc-900
+          border
+          border-zinc-700
+          p-5
+          text-white
+          outline-none
+          "
 
-            placeholder="Example: Create a BTC strategy for bull markets with medium risk..."
-
-            className="
-            w-full
-            h-40
-            rounded-xl
-            bg-zinc-900
-            border
-            border-zinc-700
-            p-5
-            text-white
-            outline-none
-            "
-
-          />
-
-
-        </div>
+        />
 
 
 
@@ -144,6 +172,7 @@ Simulation Ready
               </h2>
 
 
+
               <pre className="mt-6 whitespace-pre-wrap text-zinc-300">
                 {strategy}
               </pre>
@@ -151,6 +180,8 @@ Simulation Ready
 
 
               <button
+
+                onClick={publishStrategy}
 
                 className="
                 mt-8
@@ -166,6 +197,19 @@ Simulation Ready
                 Publish Strategy
 
               </button>
+
+
+
+              {
+                published && (
+
+                  <p className="mt-5 text-green-400">
+                    Strategy published successfully!
+                  </p>
+
+                )
+              }
+
 
 
             </section>
