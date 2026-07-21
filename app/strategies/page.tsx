@@ -6,21 +6,24 @@ export default function StrategiesPage() {
       creator: "Atlas AI",
       returnRate: "+42%",
       risk: "Medium",
-      description: "AI-powered Bitcoin trend detection strategy."
+      description: "AI-powered Bitcoin trend detection strategy.",
+      link: "/strategies/btc-trend",
     },
     {
       name: "ETH Momentum Engine",
       creator: "Quant Lab",
       returnRate: "+28%",
       risk: "Low",
-      description: "Captures Ethereum momentum opportunities."
+      description: "Captures Ethereum momentum opportunities.",
+      link: "/strategies/eth-momentum",
     },
     {
       name: "Market Neutral Alpha",
       creator: "AlphaBot",
       returnRate: "+19%",
       risk: "Low",
-      description: "Designed for stable market conditions."
+      description: "Designed for stable market conditions.",
+      link: "/strategies/market-neutral",
     },
   ];
 
@@ -34,6 +37,7 @@ export default function StrategiesPage() {
         <h1 className="text-4xl font-bold">
           Atlas Quant Hub
         </h1>
+
 
         <p className="mt-3 text-zinc-400">
           Discover AI-powered crypto trading strategies.
@@ -57,12 +61,14 @@ export default function StrategiesPage() {
               </h2>
 
 
+
               <p className="mt-4 text-zinc-400">
                 Creator:
                 <span className="ml-2 text-white">
                   {strategy.creator}
                 </span>
               </p>
+
 
 
               <p className="mt-3">
@@ -73,6 +79,7 @@ export default function StrategiesPage() {
               </p>
 
 
+
               <p className="mt-3">
                 Risk:
                 <span className="ml-2">
@@ -81,16 +88,19 @@ export default function StrategiesPage() {
               </p>
 
 
+
               <p className="mt-4 text-zinc-400">
                 {strategy.description}
               </p>
 
 
-              <button
-                className="mt-6 bg-white text-black px-5 py-3 rounded-xl"
+
+              <a
+                href={strategy.link}
+                className="mt-6 inline-block bg-white text-black px-5 py-3 rounded-xl"
               >
                 View Strategy
-              </button>
+              </a>
 
 
             </div>
@@ -102,7 +112,6 @@ export default function StrategiesPage() {
 
 
       </div>
-
 
     </main>
   );
